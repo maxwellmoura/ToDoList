@@ -1,5 +1,5 @@
 //React, useState(Manuzear o estado), ChangeEvent(Manuzear o evento), FormEvent(Submeter o Formulario) e useEfect()
-import React, {useState, ChangeEvent, FormEvent, useEffect} from 'react'
+import React, {useState, ChangeEvent, FormEvent,} from 'react'
 import styles from './Form.module.css'
 //Interface
 import { ITask } from '../interface/Task'

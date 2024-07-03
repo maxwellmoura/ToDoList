@@ -40,7 +40,9 @@ function App() {
     </div>
     <div>
       <h2>Suas Tarefas</h2>
-      <Lista tasks={tasks}/>
+      <Lista  
+      taskList={tasks}
+      />
     </div>
    </main>
     <Footer />
