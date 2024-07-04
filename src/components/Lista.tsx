@@ -6,16 +6,24 @@ import { ITask } from "../interface/Task"
 import styles from "./Lista.module.css"
 
 interface Props  {
-  taskList: ITask[]
+  taskList: ITask[] //Lista de tarefas
+  handleDelete(id: number): void //Função para deletar uma tarefa
 }
 
-const Lista = ({taskList}: Props) => {
+const Lista = ({taskList, handleDelete}: Props) => {
   return (
     <>
     {taskList.length > 0 ?(
       taskList.map((task) =>(
-        <div key={task.id}>
-          <p>{task.title}</p>
+        <div key={task.id} className={styles.task}>
+          <div className={styles.detalhes}>
+            <h4>{task.title}</h4>
+            <p>Dificuldade: {task.dificuldade}</p>
+          </div>
+          <div className={styles.acao}>
+            <i className="bi bi-pencil"></i>
+            <i className="bi bi-trash" onClick={() => handleDelete(task.id)}></i>
+          </div>
         </div>
       ))
     ): (

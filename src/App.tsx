@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 //Components
 import Header from './components/Header'
 import Footer from './components/Footer'
+import Modal from './components/Modal'
 //CSS
 import styles from './App.module.css'
 //Formulario
@@ -11,9 +12,14 @@ import Lista from './components/Lista'
 //Interface
 import { ITask } from './interface/Task'
 
+
 function App() {
   //Variável da lista de tarefas
   const [tasks, setTasks] = useState<ITask[]>([])
+  //Removendo as tarefas da lista
+    const deleteTask = (id: number) => {
+    setTasks(tasks.filter((task) => task.id !== id))
+  }
 
   //Função para adicionar uma nova tarefa
   const addTask = (task: ITask) => {
@@ -29,6 +35,7 @@ function App() {
 
    return (
    <div>
+    <Modal />
     <Header />
    <main className={styles.main}>
     <div>
@@ -42,6 +49,7 @@ function App() {
       <h2>Suas Tarefas</h2>
       <Lista  
       taskList={tasks}
+      handleDelete={deleteTask}
       />
     </div>
    </main>
