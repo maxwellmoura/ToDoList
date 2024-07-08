@@ -11,6 +11,7 @@ import Form from './components/Form'
 import Lista from './components/Lista'
 //Interface
 import { ITask } from './interface/Task'
+import TaskForm from './components/Form'
 
 
 function App() {
@@ -35,7 +36,8 @@ function App() {
 
    return (
    <div>
-    <Modal />
+    {/* Passando o taskFrom pra dentro do modal utilizando children */}
+    <Modal children={<TaskForm  btnText='Editar Tarefa' taskList={tasks}/>} /> 
     <Header />
    <main className={styles.main}>
     <div>
