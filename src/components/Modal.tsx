@@ -1,25 +1,27 @@
-import React from 'react'
-import styles from './Modal.module.css'
+import React from 'react';
+import styles from './Modal.module.css';
 
+//Dentro do modal a gente vai colocar a nossa propriedade de childern
 interface Props {
-  children: React.ReactNode //children é uma forma de usar JSX dentro do TSX
+  children: React.ReactNode; //Childern vai ser um nó react
 }
 
-const Modal = ({children}: Props) => {
-  //Evento de clic pra fechar o modal, e resgatar ele pelo id que a gente criou
-  const fechamentoModal = (e: React.MouseEvent): void => {
-      const modal = document.querySelector('#modal')
-     modal!.classList.add('hide')     
-   }
+const Modal = ({ children }: Props) => {
+  //Adicionar a função de fechamento
+  const closeModal = (e: React.MouseEvent): void => {
+    const modal = document.querySelector('#modal');
+    modal!.classList.add('hide');
+  };
+
   return (
-    <div id='modal'>
-        <div className={styles.fade} onClick={fechamentoModal}></div>
-        <div className={styles.modal}>
-            <h2>Texto Modal</h2>
-            {children}
-        </div>
+    <div id="modal" className="hide">
+      <div className={styles.fade} onClick={closeModal}></div>
+      <div className={styles.modal}>
+        <h2>Texto Modal</h2>
+        {children}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Modal
+export default Modal;
