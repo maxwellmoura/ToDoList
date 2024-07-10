@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'; 
+import  { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Modal from './components/Modal';
@@ -8,10 +8,10 @@ import styles from './App.module.css';
 import { ITask } from './interface/Task';
 
 function App() {
-  const [tasks, setTasks] = useState<ITask[]>([]); // Estado para armazenar a lista de tarefas
-  const [taskToUpdate, setTaskToUpdate] = useState<ITask | null>(null); // Estado para armazenar a tarefa a ser atualizada
+  const [tasks, setTasks] = useState<ITask[]>([]);
+  const [taskToUpdate, setTaskToUpdate] = useState<ITask | null>(null);
 
-  // Função para deletar uma tarefa pelo id
+  // Função para deletar uma tarefa pelo ID
   const deleteTask = (id: number) => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
@@ -47,7 +47,7 @@ function App() {
     setTasks([...tasks, task]);
   };
 
-  // Efeito colateral para logar a lista de tarefas sempre que for atualizada
+  // useEffect para exibir a lista de tarefas no console quando é atualizada
   useEffect(() => {
     console.log('Lista de tarefas atualizada:', tasks);
   }, [tasks]);
@@ -57,7 +57,6 @@ function App() {
       <Modal>
         <Form
           btnText='Editar Tarefa'
-          taskList={tasks}
           addTask={addTask}
           task={taskToUpdate}
           handleUpdate={updateTask}
@@ -69,7 +68,6 @@ function App() {
           <h2>O que você vai fazer?</h2>
           <Form
             btnText='Criar Tarefa'
-            taskList={tasks}
             task={taskToUpdate}
             addTask={addTask}
           />
