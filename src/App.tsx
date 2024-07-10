@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'; 
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Modal from './components/Modal';
@@ -8,13 +8,15 @@ import styles from './App.module.css';
 import { ITask } from './interface/Task';
 
 function App() {
-  const [tasks, setTasks] = useState<ITask[]>([]);
-  const [taskToUpdate, setTaskToUpdate] = useState<ITask | null>(null);
+  const [tasks, setTasks] = useState<ITask[]>([]); // Estado para armazenar a lista de tarefas
+  const [taskToUpdate, setTaskToUpdate] = useState<ITask | null>(null); // Estado para armazenar a tarefa a ser atualizada
 
+  // Função para deletar uma tarefa pelo id
   const deleteTask = (id: number) => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
+  // Função para exibir ou esconder o modal
   const tragaModal = (display: boolean) => {
     const modal = document.querySelector('#modal');
     if (display) {
@@ -24,11 +26,13 @@ function App() {
     }
   };
 
+  // Função para editar uma tarefa
   const editTask = (task: ITask): void => {
     tragaModal(true);
     setTaskToUpdate(task);
   };
 
+  // Função para atualizar uma tarefa existente
   const updateTask = (id: number, title: string, dificuldade: number, date: string, completionDate: string) => {
     const updatedTask: ITask = { id, title, dificuldade, date, completionDate };
     const updatedItems = tasks.map((task) => {
@@ -38,10 +42,12 @@ function App() {
     tragaModal(false);
   };
 
+  // Função para adicionar uma nova tarefa
   const addTask = (task: ITask) => {
     setTasks([...tasks, task]);
   };
 
+  // Efeito colateral para logar a lista de tarefas sempre que for atualizada
   useEffect(() => {
     console.log('Lista de tarefas atualizada:', tasks);
   }, [tasks]);

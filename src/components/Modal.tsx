@@ -1,24 +1,31 @@
 import React from 'react';
 import styles from './Modal.module.css';
 
-//Dentro do modal a gente vai colocar a nossa propriedade de childern
+// Interface para as propriedades do modal
 interface Props {
-  children: React.ReactNode; //Childern vai ser um nó react
+  children: React.ReactNode; // Children será um nó React
 }
 
 const Modal = ({ children }: Props) => {
-  //Adicionar a função de fechamento
-  const closeModal = (e: React.MouseEvent): void => {
+  // Função para fechar o modal
+  const closeModal = (): void => {
     const modal = document.querySelector('#modal');
     modal!.classList.add('hide');
   };
 
   return (
     <div id="modal" className="hide">
-      <div className={styles.fade} onClick={closeModal}></div>
+      <div className={styles.fade}></div>
       <div className={styles.modal}>
         <h2>Texto Modal</h2>
         {children}
+        {/* Botão para fechar o modal */}
+        <button
+          onClick={closeModal}
+          className={styles.closeButton}
+        >
+          Fechar
+        </button>
       </div>
     </div>
   );

@@ -12,12 +12,14 @@ interface Props {
 }
 
 const Form = ({ btnText, taskList, task, addTask, setTaskList, handleUpdate }: Props) => {
+  // Estados para gerenciar os campos do formulário
   const [id, setId] = useState<number>(0);
   const [title, setTitle] = useState<string>('');
   const [dificuldade, setDificuldade] = useState<number>(0);
   const [date, setDate] = useState<string>('');
   const [completionDate, setCompletionDate] = useState<string>('');
 
+  // useEffect para preencher o formulário com os dados da tarefa ao editar
   useEffect(() => {
     if (task) {
       setId(task.id);
@@ -28,6 +30,7 @@ const Form = ({ btnText, taskList, task, addTask, setTaskList, handleUpdate }: P
     }
   }, [task]);
 
+// Manipuladores de mudança para cada campo do formulário
   const addTaskHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const currentDate = new Date().toLocaleDateString();
@@ -41,14 +44,18 @@ const Form = ({ btnText, taskList, task, addTask, setTaskList, handleUpdate }: P
       }
       addTask(newTask);
     }
+    // Limpar o formulário após adicionar a tarefa
     setTitle('');
     setDificuldade(0);
     setCompletionDate('');
   };
 
+ // Manipulador de envio do formulário
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    // Atualizar a tarefa existente
     if (e.target.name === 'title') {
       setTitle(e.target.value);
+      // Adicionar uma nova tarefa
     } else if (e.target.name === 'dificuldade') {
       setDificuldade(parseInt(e.target.value));
     } else if (e.target.name === 'completionDate') {
@@ -69,7 +76,7 @@ const Form = ({ btnText, taskList, task, addTask, setTaskList, handleUpdate }: P
         />
       </div>
       <div className={styles.input_container}>
-        <label htmlFor="dificuldade">Dificuldade:</label>
+        <label htmlFor="dificuldade">Dificuldade de 1 a 5:</label>
         <input
           type="number"
           name="dificuldade"
