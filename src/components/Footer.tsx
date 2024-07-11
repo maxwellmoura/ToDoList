@@ -3,7 +3,7 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
     <p>
-      <span>React + TS To-DO</span> @2024
+      <h4>React + TS To-Do-List por <span>Maxwell Moura</span> <p className={styles.ano}>@2024</p></h4>
     </p>
   </footer>
   )

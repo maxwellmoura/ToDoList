@@ -17,8 +17,6 @@ const Modal = ({ children }: Props) => {
     <div id="modal" className="hide">
       <div className={styles.fade}></div>
       <div className={styles.modal}>
-        <h2>Texto Modal</h2>
-        {children}
         {/* Botão para fechar o modal */}
         <button
           onClick={closeModal}
@@ -26,6 +24,7 @@ const Modal = ({ children }: Props) => {
         >
           Fechar
         </button>
+        {children}
       </div>
     </div>
   );
